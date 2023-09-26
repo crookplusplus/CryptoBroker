@@ -1,10 +1,21 @@
 # CryptoBroker
-&nbsp;&nbsp; This project emulates a cryptocurrency brokerage tasked with handling purchase and sale requests for a pair of digital currencies. To manage these transactions efficiently, the project employs concurrent producer and consumer threads. The producer threads are responsible for generating buy orders and depositing them into a shared queue, specific to the respective cryptocurrency. Semaphores are utilized to prevent any potential race conditions and to ensure seamless thread synchronization. This project is executed within a Linux environment to harness the capabilities of the POSIX thread library.
-
-## Purpose
+&nbsp;&nbsp;This project serves as a simulation of a cryptocurrency brokerage dedicated to managing purchase and sale requests for a pair of digital currencies. To ensure efficient transaction processing, the project leverages the concept of concurrent producer and consumer threads
 &nbsp;&nbsp; The purpose of this project is to demonstrate proficiency in creating multithreaded programs that implement semaphores for synchronization and data integrity in C++ programming within a Linux environment.
+## Purpose
+
+## Concurrency Model
+&nbsp;&nbsp;In this system, producer threads are responsible for the generation of buy orders, which are then placed into a shared queue functioning as a bounded buffer. Specifically, there exist two producer threads, each responsible for producing buy orders for distinct cryptocurrencies, namely Bitcoin and Ethereum.
+
+&nbsp;&nbsp;On the other side, two consumer threads are tasked with processing these buy orders via separate simulated blockchains, referred to as Blockchain X and Blockchain Y.
+
+## Synchronization and Data Control
+&nbsp;&nbsp;To maintain the integrity of the shared queue and prevent potential race conditions, semaphores are employed to enforce critical sections around the queue. Given the bounded nature of the buffer, which permits a maximum of 16 total sale requests and 5 Bitcoin requests, semaphores are strategically employed to prevent overproduction of requests by producer threads. Additionally, a semaphore is employed as a barrier, ensuring synchronized completion of all threads.
+
+
 
 ## DevelopmentEnvironment
+&nbsp;&nbsp;This project is executed within a Linux environment to harness the capabilities of the POSIX thread library.
+
 - **<u>Operating System:</u>** [Ubuntu 20.04 LTS on Windows Subsytem for Linux.](https://ubuntu.com/tutorials/install-ubuntu-on-wsl2-on-windows-10#1-overview)
 - **<u>IDE: </u>** [Visual Studio Code (VS Code)](https://code.visualstudio.com/download)
 - **<u>Compiler</u>**[Visual Studio Code (VS Code)](https://gcc.gnu.org/)
@@ -19,11 +30,15 @@
 - **<u>queue</u>** - The producer and consumer threads share a queue for orders of the same coin.
 
 ## Features
-- **<u>Multi-Threading (Producer-Consumer)</u>** This program implements a main thread, two Producer threads and two Consumer Threads. The Producer threads create buy orders and adds them to the queue while the corresponding Consumer thread pulls the order from the queue and fullfils the order.
+- **<u>Multi-Threading (Producer-Consumer):</u>** This program implements a main thread, two Producer threads and two Consumer Threads. The Producer threads create buy orders and adds them to the queue while the corresponding Consumer thread pulls the order from the queue and fullfils the order.
 
-- **<u>Semaphores</u>** Semaphores are used to wrap critical sections within threads that are manipulating shared data. Semaphores are also used for thread synchronization and thread communication.
+- **<u>Bounded Buffer Implementation</u>:** Employs a bounded buffer, ensuring a limited capacity for sale requests (16 total, 5 Bitcoin) and employing semaphores to prevent overproduction
 
-- **<u>Command-Line Argument Parsing:</u>** - The program offers user-friendly command-line interface functionality for building and executing the program.
+- **<u>Semaphore-Based Synchronization</u>:**  Implements semaphores to prevent race conditions, creating critical sections around the shared queue, and ensures synchronized completion of all threads.
+
+- **<u>Command-Line Argument Parsing:</u>**  The program offers user-friendly command-line interface functionality for building and executing the program.
+
+- **<u>Linux Environment:</u>** Designed to run on a Linux environment, taking advantage of the POSIX thread library for optimal multi-threaded execution and synchronization.
 
 ## Getting Started
 &nbsp;&nbsp; The program requires a Unix based operating system for the program to execute with the POSIX library for concurrent threads using pthreads.h.
@@ -60,3 +75,4 @@ This project is built and operated through the command line interface.
     - **_-e N_**: &nbsp;&nbsp; _N_ is the number of milliseconds that is requied to produce and publish an **Ethereum** request. Default is 0.
 
 ## Output
+&nbsp;&nbsp; The output of the program is displayed to the terminal at the end of execution.
