@@ -1,7 +1,5 @@
 /*
 *Authored by: Chris Rook
-*Red ID: 825835875
-*CS480-1001
 *
 *
 */
@@ -18,10 +16,7 @@
 
 
 /**
- * TODO: 
- * semaphore error statements
  * ./cryptoexc -r 150 -x 10 -y 15 -b 12 -e 7
- * NOTES: Check the assignment for failure criteria
 */
 
 
@@ -156,7 +151,3 @@ int main (int argc, char* argv[])
 
     exit(NORMALEXIT);
 }
-/**
- *          -removed from launch.json "-r", "150", "-x", "10", "-y", "15", "-b", "12", "-e", "7"
- * 
-*/

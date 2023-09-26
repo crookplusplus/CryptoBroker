@@ -3,9 +3,6 @@
 
 #include "log.h"
 
-/*
- * i/o functions - assumed to be called in a critical section
- */
 
 
 #ifdef __cplusplus
